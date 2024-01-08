@@ -18,7 +18,7 @@ const port = 3000;
 
 app.use(cors(
     {
-        origin: ["https://deploy-mern-frontend.vercel.app"],
+        origin: ["https://tasktracker-ecru.vercel.app/"],
         methods: ["POST", "GET"],
         credentials: true
     }
