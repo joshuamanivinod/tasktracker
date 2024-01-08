@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+const cors = require('cors')
 
 const db = new pg.Client({
   user: "postgres",
@@ -14,6 +15,14 @@ db.connect();
 
 const app = express();
 const port = 3000;
+
+app.use(cors(
+    {
+        origin: ["https://deploy-mern-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -67,6 +76,6 @@ app.post("/delete", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT||port, () => {
+app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
